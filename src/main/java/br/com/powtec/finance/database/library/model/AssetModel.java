@@ -3,6 +3,8 @@ package br.com.powtec.finance.database.library.model;
 import java.util.List;
 
 import br.com.powtec.finance.database.library.enums.AssetTypeEnum;
+import br.com.powtec.finance.database.library.model.movement.AssetMovementModel;
+import br.com.powtec.finance.database.library.model.movement.AssetReturnsMovementModel;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -37,7 +39,7 @@ public class AssetModel {
   private String ticker;
   private Double value;
   @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY, mappedBy = "asset")
-  private List<AssetMovementModel> moviments;
+  private List<AssetMovementModel> movements;
   @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY, mappedBy = "stock")
   private List<AssetReturnsMovementModel> returns;
   @Enumerated(EnumType.STRING)

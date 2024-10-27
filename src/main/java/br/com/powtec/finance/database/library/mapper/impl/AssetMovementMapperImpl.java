@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import br.com.powtec.finance.database.library.mapper.AssetMapper;
 import br.com.powtec.finance.database.library.mapper.MovementMapper;
-import br.com.powtec.finance.database.library.model.AssetMovementModel;
 import br.com.powtec.finance.database.library.model.dto.AssetMovementDTO;
+import br.com.powtec.finance.database.library.model.movement.AssetMovementModel;
 
 @Component("assetMovementMapper")
 public class AssetMovementMapperImpl implements MovementMapper<AssetMovementModel, AssetMovementDTO> {
@@ -60,8 +60,8 @@ public class AssetMovementMapperImpl implements MovementMapper<AssetMovementMode
   @Override
   public List<AssetMovementModel> toModelsList(List<AssetMovementDTO> body, Long assetId) {
     List<AssetMovementModel> modelsList = new ArrayList<>(body.size());
-    for (AssetMovementDTO moviment : body) {
-      modelsList.add(toModel(moviment, assetId));
+    for (AssetMovementDTO movement : body) {
+      modelsList.add(toModel(movement, assetId));
     }
     return modelsList;
   }

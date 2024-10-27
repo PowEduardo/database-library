@@ -1,7 +1,8 @@
-package br.com.powtec.finance.database.library.model;
+package br.com.powtec.finance.database.library.model.movement;
 
 import java.time.LocalDate;
 
+import br.com.powtec.finance.database.library.model.MovementModel;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
