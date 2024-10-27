@@ -4,15 +4,15 @@ import java.util.List;
 
 public interface BaseCrudMapper<T, Y> {
 
-  public T toDto(Y model);
+  public Y toDto(T model);
 
-  public List<T> toDtosList(List<? extends Y> movementsModel);
+  public List<Y> toDtosList(List<T> movementsModel);
 
-  public T toDtoOnlyId(Y model);
+  public Y toDtoOnlyId(T model);
 
-  public Y toModel(T dto);
+  public T toModel(Y dto);
 
-  public Y toModelById(Long id);
+  public T toModelById(Long id);
 
-  public List<Y> toModelsList(List<? extends T> movementsDto);
+  public List<T> toModelsList(List<Y> movementsDto);
 }
