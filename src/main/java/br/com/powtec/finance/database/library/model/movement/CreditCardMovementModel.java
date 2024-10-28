@@ -10,16 +10,18 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "tb_movements_credit_card")
+@Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "tb_movements_credit_card")
 public class CreditCardMovementModel extends MovementModel {
   private Integer installment;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
