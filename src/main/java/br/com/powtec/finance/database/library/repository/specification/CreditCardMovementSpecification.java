@@ -7,8 +7,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import br.com.powtec.finance.database.library.enums.AssetTypeEnum;
-import br.com.powtec.finance.database.library.model.AssetModel;
 import br.com.powtec.finance.database.library.model.movement.CreditCardMovementModel;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
