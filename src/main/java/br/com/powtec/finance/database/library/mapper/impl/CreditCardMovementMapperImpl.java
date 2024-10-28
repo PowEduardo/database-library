@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.mapper.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,11 @@ public class CreditCardMovementMapperImpl extends MovementAbstractMapper
 
   @Override
   public List<CreditCardMovementDTO> toDtosList(List<CreditCardMovementModel> movementsModel) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'toDtosList'");
+    List<CreditCardMovementDTO> dtosList = new ArrayList<>(movementsModel.size());
+    for (CreditCardMovementModel model : movementsModel) {
+      dtosList.add(toDto(model));
+    }
+    return dtosList;
   }
 
   @Override
@@ -51,8 +55,11 @@ public class CreditCardMovementMapperImpl extends MovementAbstractMapper
 
   @Override
   public List<CreditCardMovementModel> toModelsList(List<CreditCardMovementDTO> movementsDto, Long parentId) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'toModelsList'");
+    List<CreditCardMovementModel> dtosList = new ArrayList<>(movementsDto.size());
+    for (CreditCardMovementDTO dto : movementsDto) {
+      dtosList.add(toModel(dto, parentId));
+    }
+    return dtosList;
   }
 
 }
