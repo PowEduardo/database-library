@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import br.com.powtec.finance.database.library.model.CreditCardStatementModel;
 
 @Repository
-public interface CreditCardInstallmentRepository  extends JpaRepository<CreditCardStatementModel, Long>, JpaSpecificationExecutor<CreditCardStatementModel> {
+public interface CreditCardInstallmentRepository extends JpaRepository<CreditCardStatementModel, Long>, JpaSpecificationExecutor<CreditCardStatementModel> {
 
 }
