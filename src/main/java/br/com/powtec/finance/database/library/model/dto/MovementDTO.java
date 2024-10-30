@@ -25,4 +25,5 @@ public class MovementDTO {
   Double value;
   MovementTypeEnum type;
   String description;
+  Boolean paid;
 }

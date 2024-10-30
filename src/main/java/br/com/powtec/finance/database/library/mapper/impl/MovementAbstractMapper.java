@@ -10,6 +10,7 @@ public abstract class MovementAbstractMapper {
     dto.setId(model.getId());
     dto.setType(model.getType());
     dto.setValue(model.getValue());
+    dto.setPaid(model.getPaid());
   }
 
   protected void toModel(MovementDTO dto, MovementModel model) {
@@ -18,5 +19,6 @@ public abstract class MovementAbstractMapper {
     model.setId(dto.getId());
     model.setType(dto.getType());
     model.setValue(dto.getValue());
+    model.setPaid(model.getPaid());
   }
 }

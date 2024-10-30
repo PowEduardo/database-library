@@ -26,7 +26,6 @@ public class CreditCardMovementModel extends MovementModel {
   private Integer installment;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   private CreditCardModel card;
-  private Boolean paid;
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "movement")
   private List<CreditCardInstallmentModel> installments;
 }

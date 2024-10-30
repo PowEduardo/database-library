@@ -22,6 +22,7 @@ public class AssetSpecification implements BaseCrudSpecification<AssetModel>{
   public Specification<AssetModel> getQuery(String parameters) {
     return new Specification<>() {
 
+      @SuppressWarnings("null")
       @Override
       @Nullable
       public Predicate toPredicate(Root<AssetModel> root, CriteriaQuery<?> query,
