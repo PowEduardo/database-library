@@ -33,6 +33,7 @@ public class CreditCardInstallmentModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private Integer installment;
+  YearMonth referenceMonth;
   private Double value;
   private YearMonth referenceDate;
   @Enumerated(EnumType.STRING)
