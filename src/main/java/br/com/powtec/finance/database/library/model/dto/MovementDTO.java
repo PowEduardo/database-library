@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import br.com.powtec.finance.database.library.enums.CategoryTypeEnum;
 import br.com.powtec.finance.database.library.enums.MovementTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,4 +27,5 @@ public class MovementDTO {
   MovementTypeEnum type;
   String description;
   Boolean paid;
+  CategoryTypeEnum category;
 }
