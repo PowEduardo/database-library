@@ -5,19 +5,14 @@ import lombok.Getter;
 @Getter
 public enum AssetOperationEnum {
 
-  BUY("BUY"),
-  SELL("SELL"),
-  SPLIT("SPLIT"),
-  CONTRIBUTION("CONTRIBUTION"),
-  PORTABILITY("PORTABILITY"),
-  CREDIT_ENTRY("CREDIT_ENTRY"),
-  DEPOSIT("DEPOSIT"),
-  JAM("JAM"),
-  WITHDRAW("WITHDRAW");
+  BUY,
+  SELL,
+  SPLIT,
+  CONTRIBUTION,
+  PORTABILITY,
+  CREDIT_ENTRY,
+  DEPOSIT,
+  JAM,
+  WITHDRAW;
 
-  private String name;
-
-  AssetOperationEnum(String name) {
-    this.name = name;
-  }
 }
