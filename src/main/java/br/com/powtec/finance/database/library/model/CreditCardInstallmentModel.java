@@ -35,7 +35,6 @@ public class CreditCardInstallmentModel {
   private Integer installment;
   YearMonth referenceMonth;
   private Double value;
-  private YearMonth referenceDate;
   @Enumerated(EnumType.STRING)
   private EntryTypeEnum entryType;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
