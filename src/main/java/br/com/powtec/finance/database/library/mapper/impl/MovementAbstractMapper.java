@@ -11,6 +11,7 @@ public abstract class MovementAbstractMapper {
     dto.setType(model.getType());
     dto.setValue(model.getValue());
     dto.setPaid(model.getPaid());
+    dto.setCategory(model.getCategory());
   }
 
   protected void toModel(MovementDTO dto, MovementModel model) {
@@ -20,5 +21,6 @@ public abstract class MovementAbstractMapper {
     model.setType(dto.getType());
     model.setValue(dto.getValue());
     model.setPaid(model.getPaid());
+    model.setCategory(dto.getCategory());
   }
 }

@@ -28,4 +28,5 @@ public class MovementDTO {
   String description;
   Boolean paid;
   CategoryTypeEnum category;
+  AccountDTO account;
 }

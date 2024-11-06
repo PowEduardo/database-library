@@ -2,6 +2,7 @@ package br.com.powtec.finance.database.library.model;
 
 import java.time.LocalDate;
 
+import br.com.powtec.finance.database.library.enums.CategoryTypeEnum;
 import br.com.powtec.finance.database.library.enums.MovementTypeEnum;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -46,4 +47,6 @@ public class MovementModel {
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
   AccountModel account;
   Boolean paid;
+  @Enumerated(EnumType.STRING)
+  CategoryTypeEnum category;
 }
