@@ -5,23 +5,21 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import br.com.powtec.finance.database.library.enums.MovementTypeEnum;
 import br.com.powtec.finance.database.library.mapper.MovementMapper;
-import br.com.powtec.finance.database.library.model.AccountModel;
 import br.com.powtec.finance.database.library.model.MovementModel;
 import br.com.powtec.finance.database.library.model.dto.MovementDTO;
 
 @Component
-public class AccountMovementMapperImpl implements MovementMapper<MovementModel, MovementDTO> {
+public class AccountMovementMapperImpl extends MovementAbstractMapper
+    implements MovementMapper<MovementModel, MovementDTO> {
 
   @Override
   public MovementDTO toDto(MovementModel model) {
-    return MovementDTO.builder()
-        .id(model.getId())
-        .date(model.getDate())
-        .type(model.getType())
-        .value(model.getValue())
-        .description(model.getDescription())
-        .build();
+    MovementDTO dto = new MovementDTO();
+    super.toDto(model, dto);
+    dto.setValue(model.getType() == MovementTypeEnum.DEBIT ? model.getValue() * -1.0 : model.getValue());
+    return dto;
   }
 
   @Override
@@ -41,12 +39,7 @@ public class AccountMovementMapperImpl implements MovementMapper<MovementModel, 
   @Override
   public MovementModel toModel(MovementDTO dto, Long parentId) {
     MovementModel model = new MovementModel();
-    model.setDate(dto.getDate());
-    model.setType(dto.getType());
-    model.setValue(dto.getValue());
-    model.setId(dto.getId());
-    model.setDescription(dto.getDescription());
-    model.setAccount(AccountModel.builder().id(parentId).build());
+    super.toModel(dto, model);
     return model;
   }
 
