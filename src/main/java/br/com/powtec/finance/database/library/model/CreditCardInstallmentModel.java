@@ -1,7 +1,5 @@
 package br.com.powtec.finance.database.library.model;
 
-import java.time.YearMonth;
-
 import br.com.powtec.finance.database.library.enums.EntryTypeEnum;
 import br.com.powtec.finance.database.library.model.movement.CreditCardMovementModel;
 import jakarta.persistence.CascadeType;
@@ -33,7 +31,7 @@ public class CreditCardInstallmentModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private Integer installment;
-  YearMonth referenceMonth;
+  private String referenceMonth;
   private Double value;
   @Enumerated(EnumType.STRING)
   private EntryTypeEnum entryType;
