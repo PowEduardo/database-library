@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 
 import br.com.powtec.finance.database.library.mapper.AssetMapper;
 import br.com.powtec.finance.database.library.mapper.MovementMapper;
+import br.com.powtec.finance.database.library.model.AccountModel;
 import br.com.powtec.finance.database.library.model.dto.AssetReturnsMovementDTO;
 import br.com.powtec.finance.database.library.model.movement.AssetReturnsMovementModel;
 
 @Component("assetReturnsMapper")
-public class AssetReturnsMovementMapperImpl
+public class AssetReturnsMovementMapperImpl extends MovementAbstractMapper
     implements MovementMapper<AssetReturnsMovementModel, AssetReturnsMovementDTO> {
 
   @Autowired
@@ -22,15 +23,13 @@ public class AssetReturnsMovementMapperImpl
   public AssetReturnsMovementDTO toDto(AssetReturnsMovementModel model) {
     AssetReturnsMovementDTO response = new AssetReturnsMovementDTO();
     AssetReturnsMovementModel returnsModel = (AssetReturnsMovementModel) model;
+    super.toDto(returnsModel, response);
     response.setAmount(returnsModel.getAmount());
-    response.setDate(returnsModel.getDate());
-    response.setId(returnsModel.getId());
     response.setAsset(stockMapper.toDtoOnlyId(returnsModel.getStock()));
-    response.setType(returnsModel.getType());
-    response.setValue(returnsModel.getValue());
     response.setOperation(returnsModel.getOperation());
     response.setUnitValue(returnsModel.getUnitValue());
     response.setExDividendDate(returnsModel.getExDividendDate());
+    response.setIrFee(model.getIrFee());
     return response;
   }
 
@@ -46,15 +45,14 @@ public class AssetReturnsMovementMapperImpl
   @Override
   public AssetReturnsMovementModel toModel(AssetReturnsMovementDTO request, Long id) {
     AssetReturnsMovementModel model = new AssetReturnsMovementModel();
-    model.setDate(request.getDate());
-    model.setType(request.getType());
-    model.setValue(request.getValue());
+    super.toModel(request, model);
     model.setStock(stockMapper.toModelById(id));
+    model.setAccount(AccountModel.builder().id(1L).build());
     model.setAmount(request.getAmount());
     model.setOperation(request.getOperation());
     model.setUnitValue(request.getUnitValue());
     model.setExDividendDate(request.getExDividendDate());
-    model.setId(request.getId());
+    model.setIrFee(request.getIrFee());
     return model;
   }
 

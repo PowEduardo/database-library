@@ -27,11 +27,12 @@ import lombok.Setter;
 public class AssetReturnsMovementModel extends MovementModel {
 
   private Integer amount;
+  private LocalDate exDividendDate;
+  private Double irFee;
+  @Enumerated(EnumType.STRING)
+  private AssetReturnsOperationEnum operation;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   @JoinColumn(name = "asset_id")
   private AssetModel stock;
-  @Enumerated(EnumType.STRING)
-  private AssetReturnsOperationEnum operation;
   private Double unitValue;
-  private LocalDate exDividendDate;
 }

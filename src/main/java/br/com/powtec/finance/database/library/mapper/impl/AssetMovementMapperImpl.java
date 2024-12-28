@@ -8,11 +8,12 @@ import org.springframework.stereotype.Component;
 
 import br.com.powtec.finance.database.library.mapper.AssetMapper;
 import br.com.powtec.finance.database.library.mapper.MovementMapper;
+import br.com.powtec.finance.database.library.model.AccountModel;
 import br.com.powtec.finance.database.library.model.dto.AssetMovementDTO;
 import br.com.powtec.finance.database.library.model.movement.AssetMovementModel;
 
 @Component("assetMovementMapper")
-public class AssetMovementMapperImpl implements MovementMapper<AssetMovementModel, AssetMovementDTO> {
+public class AssetMovementMapperImpl extends MovementAbstractMapper implements MovementMapper<AssetMovementModel, AssetMovementDTO> {
 
   @Autowired
   private AssetMapper stockMapper;
@@ -20,12 +21,9 @@ public class AssetMovementMapperImpl implements MovementMapper<AssetMovementMode
   @Override
   public AssetMovementDTO toDto(AssetMovementModel model) {
     AssetMovementDTO response = new AssetMovementDTO();
+    super.toDto(model, response);
     response.setAmount(model.getAmount());
-    response.setDate(model.getDate());
-    response.setId(model.getId());
     response.setAsset(stockMapper.toDtoOnlyId(model.getAsset()));
-    response.setType(model.getType());
-    response.setValue(model.getValue());
     response.setOperation(model.getOperation());
     response.setUnitValue(model.getUnitValue());
     response.setDueDate(model.getDueDate());
@@ -44,14 +42,12 @@ public class AssetMovementMapperImpl implements MovementMapper<AssetMovementMode
   @Override
   public AssetMovementModel toModel(AssetMovementDTO request, Long assetId) {
     AssetMovementModel model = new AssetMovementModel();
-    model.setDate(request.getDate());
-    model.setType(request.getType());
-    model.setValue(request.getValue());
+    super.toModel(request, model);
     model.setAsset(stockMapper.toModelById(assetId));
+    model.setAccount(AccountModel.builder().id(1L).build());
     model.setAmount(request.getAmount());
     model.setOperation(request.getOperation());
     model.setUnitValue(request.getUnitValue());
-    model.setId(request.getId());
     model.setDueDate(request.getDueDate());
 
     return model;

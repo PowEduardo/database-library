@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.powtec.finance.database.library.enums.MovementTypeEnum;
 import br.com.powtec.finance.database.library.mapper.MovementMapper;
+import br.com.powtec.finance.database.library.model.AccountModel;
 import br.com.powtec.finance.database.library.model.MovementModel;
 import br.com.powtec.finance.database.library.model.dto.MovementDTO;
 
@@ -40,6 +41,7 @@ public class AccountMovementMapperImpl extends MovementAbstractMapper
   public MovementModel toModel(MovementDTO dto, Long parentId) {
     MovementModel model = new MovementModel();
     super.toModel(dto, model);
+    model.setAccount(AccountModel.builder().id(parentId).build());
     return model;
   }
 
