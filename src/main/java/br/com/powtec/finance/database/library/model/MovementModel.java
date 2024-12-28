@@ -1,6 +1,9 @@
 package br.com.powtec.finance.database.library.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import br.com.powtec.finance.database.library.enums.MovementTypeEnum;
 import jakarta.persistence.CascadeType;
@@ -33,6 +36,8 @@ import lombok.Setter;
 public class MovementModel {
 
   LocalDate date;
+  @CreationTimestamp
+  LocalDateTime inclusionDateTime;
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
@@ -46,4 +51,5 @@ public class MovementModel {
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
   AccountModel account;
   Boolean paid;
+  String category;
 }

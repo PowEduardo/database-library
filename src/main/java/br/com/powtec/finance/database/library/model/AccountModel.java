@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +23,8 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @Setter
-@Entity(name = "tb_account")
+@Entity
+@Table(name = "tb_account")
 public class AccountModel {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

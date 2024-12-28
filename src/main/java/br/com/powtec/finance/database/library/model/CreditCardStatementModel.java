@@ -1,6 +1,5 @@
 package br.com.powtec.finance.database.library.model;
 
-import java.time.YearMonth;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -30,7 +29,7 @@ public class CreditCardStatementModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private YearMonth referenceMonth;
+  private String referenceMonth;
   private Double discounts;
   private Double value;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)

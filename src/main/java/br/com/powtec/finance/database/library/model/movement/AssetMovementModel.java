@@ -12,17 +12,19 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "tb_movements_asset")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "tb_movements_asset")
 public class AssetMovementModel extends MovementModel {
 
   private Double amount;
@@ -30,9 +32,10 @@ public class AssetMovementModel extends MovementModel {
   @JoinColumn(name = "asset_id")
   @NotNull
   private AssetModel asset;
+  private LocalDate dueDate;
+  private Double liquidationFee;
   @Enumerated(EnumType.STRING)
   @NotNull
   private AssetOperationEnum operation;
   private Double unitValue;
-  private LocalDate dueDate;
 }

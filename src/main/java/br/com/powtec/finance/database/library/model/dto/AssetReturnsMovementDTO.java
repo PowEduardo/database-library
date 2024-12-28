@@ -19,6 +19,6 @@ public class AssetReturnsMovementDTO extends MovementDTO {
   private AssetReturnsOperationEnum operation;
   private Double unitValue;
   private LocalDate exDividendDate;
-  private LocalDate duDate;
+  private Double irFee;
 
 }

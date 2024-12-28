@@ -16,8 +16,9 @@ public class AssetMovementDTO extends MovementDTO {
 
   AssetDTO asset;
   Double amount;
+  LocalDate dueDate;
+  private Double liquidationFee;
   AssetOperationEnum operation;
   Double unitValue;
-  LocalDate dueDate;
 
 }
