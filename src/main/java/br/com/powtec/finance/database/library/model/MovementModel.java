@@ -24,6 +24,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Builder.Default;
 
 @AllArgsConstructor
 @Builder
@@ -50,6 +51,7 @@ public class MovementModel {
   String description;
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
   AccountModel account;
-  Boolean paid;
+  @Default
+  Boolean paid = false;
   String category;
 }
