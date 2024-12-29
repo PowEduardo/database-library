@@ -1,5 +1,8 @@
 package br.com.powtec.finance.database.library.mapper;
 
-public interface CreditCardInstallmentMapper {
+import br.com.powtec.finance.database.library.model.CreditCardInstallmentModel;
+import br.com.powtec.finance.database.library.model.dto.CreditCardInstallmentDTO;
+
+public interface CreditCardInstallmentMapper extends BaseCrudMapper<CreditCardInstallmentModel, CreditCardInstallmentDTO>{
 
 }
