@@ -13,8 +13,8 @@ public interface CreditCardRepository
       "FROM tb_credit_card_statement " +
       "WHERE reference_month = " +
       "  CASE " +
-      "    WHEN EXTRACT(DAY FROM CURRENT_DATE) <= 2 THEN TO_CHAR(CURRENT_DATE, 'MM/YYYY') " +
-      "    ELSE TO_CHAR(CURRENT_DATE + INTERVAL '1 month', 'MM/YYYY') " +
+      "    WHEN EXTRACT(DAY FROM CURRENT_DATE) <= 2 THEN TO_CHAR(CURRENT_DATE, 'YYYY-MM') " +
+      "    ELSE TO_CHAR(CURRENT_DATE + INTERVAL '1 month', 'YYYY-MM') " +
       "  END", nativeQuery = true)
   Double getCurrentStatementValue();
 
@@ -22,8 +22,8 @@ public interface CreditCardRepository
       "FROM tb_credit_card_statement " +
       "WHERE reference_month = " +
       "  CASE " +
-      "    WHEN EXTRACT(DAY FROM CURRENT_DATE) >= 2 THEN TO_CHAR(CURRENT_DATE, 'MM/YYYY') " +
-      "    ELSE TO_CHAR(CURRENT_DATE - INTERVAL '1 month', 'MM/YYYY') " +
+      "    WHEN EXTRACT(DAY FROM CURRENT_DATE) >= 2 THEN TO_CHAR(CURRENT_DATE, 'YYYY-MM') " +
+      "    ELSE TO_CHAR(CURRENT_DATE - INTERVAL '1 month', 'YYYY-MM') " +
       "  END", nativeQuery = true)
   Double getLastStatementValue();
 }

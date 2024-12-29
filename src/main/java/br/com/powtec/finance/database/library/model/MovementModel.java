@@ -51,7 +51,6 @@ public class MovementModel {
   String description;
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
   AccountModel account;
-  @Default
-  Boolean paid = false;
+  Boolean paid;
   String category;
 }
