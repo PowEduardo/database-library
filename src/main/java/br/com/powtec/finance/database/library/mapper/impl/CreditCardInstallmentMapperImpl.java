@@ -25,7 +25,9 @@ public class CreditCardInstallmentMapperImpl
         .installment(model.getInstallment())
         .referenceMonth(model.getReferenceMonth())
         .value(model.getValue())
-        .movement(movementMapper.toDto(model.getMovement()))
+        .movement(movementMapper.toDtoOnlyId(model.getMovement()))
+        .description(model.getMovement().getDescription())
+        .date(model.getMovement().getDate())
         .build();
   }
 

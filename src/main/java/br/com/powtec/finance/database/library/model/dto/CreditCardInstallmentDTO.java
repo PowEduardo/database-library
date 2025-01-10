@@ -1,5 +1,7 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.time.LocalDate;
+
 import br.com.powtec.finance.database.library.enums.EntryTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,4 +22,6 @@ public class CreditCardInstallmentDTO {
   private Double value;
   private EntryTypeEnum entryType;
   private CreditCardMovementDTO movement;
+  private String description;
+  private LocalDate date;
 }
