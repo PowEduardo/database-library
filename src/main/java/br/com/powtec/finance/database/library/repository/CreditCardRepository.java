@@ -10,8 +10,8 @@ import br.com.powtec.finance.database.library.model.CreditCardModel;
 public interface CreditCardRepository
         extends BaseCrudRepository<CreditCardModel> {
 
-    @Query(value = "SELECT value " +
-            "FROM tb_credit_card_statement " +
+    @Query(value = "SELECT SUM(value) " +
+            "FROM tb_credit_card_installment " +
             "WHERE reference_month = " +
             "  CASE " +
             "    WHEN EXTRACT(DAY FROM CURRENT_DATE) <= 2 THEN TO_CHAR(CURRENT_DATE, 'YYYY-MM') " +
@@ -19,8 +19,8 @@ public interface CreditCardRepository
             "  END", nativeQuery = true)
     Double getCurrentStatementValue();
 
-    @Query(value = "SELECT value " +
-            "FROM tb_credit_card_statement " +
+    @Query(value = "SELECT SUM(value) " +
+            "FROM tb_credit_card_installment " +
             "WHERE reference_month = " +
             "  CASE " +
             "    WHEN EXTRACT(DAY FROM CURRENT_DATE) >= 2 THEN TO_CHAR(CURRENT_DATE, 'YYYY-MM') " +
