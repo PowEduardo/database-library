@@ -26,13 +26,18 @@ public class CreditCardMovementSpecification implements BaseCrudMovementSpecific
       public Predicate toPredicate(Root<CreditCardMovementModel> root, CriteriaQuery<?> query,
           CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<>();
+        if (parentId!=null) {
+          predicates.add(criteriaBuilder
+              .and(criteriaBuilder.equal(root.get("card").get("id"), parentId)));
+        }
         if (parameters != null) {
           for (String param : parameters.split(",")) {
             String keyValue[] = param.split(":");
-            if (parentId!=null) {
+            if (keyValue[0].equals("referenceMonth")) {
               predicates.add(criteriaBuilder
-                  .and(criteriaBuilder.equal(root.get("card").get("id"), parentId)));
-            } else {
+                  .and(criteriaBuilder.equal(root.get("installments").get("referenceMonth"), keyValue[1])));
+            }
+             else {
               predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(keyValue[0]), keyValue[1])));
             }
           }
