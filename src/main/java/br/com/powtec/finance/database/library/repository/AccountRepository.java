@@ -11,6 +11,6 @@ import br.com.powtec.finance.database.library.model.AccountModel;
 @Repository
 public interface AccountRepository extends JpaRepository<AccountModel, Long>, JpaSpecificationExecutor<AccountModel> {
 
-  @Query(value = "SELECT COALESCE(SUM(CASE WHEN movements.type = 'DEBIT' THEN movements.value * -1.0 ELSE movements.value END), 0) AS value FROM MovementModel AS movements JOIN movements.account AS account WHERE account.id = :accountId")
+  @Query(value = "SELECT COALESCE(SUM(CASE WHEN movements.type = 'DEBIT' THEN movements.value * -1.0 ELSE movements.value END), 0) AS value FROM MovementModel AS movements JOIN movements.account AS account WHERE account.id = :accountId AND date <= CURRENT_DATE")
   Double sumMovementsByAccount(@Param("accountId") Long accountId);
 }

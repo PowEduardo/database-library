@@ -27,4 +27,5 @@ public class AssetDetailsDTO {
   private Integer targetAmount;
   private Double paidValue;
   private Double returns;
+  private Double nextDividend;
 }
