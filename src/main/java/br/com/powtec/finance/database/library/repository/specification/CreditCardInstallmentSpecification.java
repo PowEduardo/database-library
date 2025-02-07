@@ -33,6 +33,8 @@ public class CreditCardInstallmentSpecification implements BaseCrudSpecification
               predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(keyValue[0]).get("id"), keyValue[1])));
             } else if (keyValue[0].equals("date")){
               predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("movement").get("date"), keyValue[1])));
+            } else if (keyValue[0].equals("movement")) {
+              predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(keyValue[0]).get("id"), keyValue[1])));
             } else {
               predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(keyValue[0]), keyValue[1])));
             }
