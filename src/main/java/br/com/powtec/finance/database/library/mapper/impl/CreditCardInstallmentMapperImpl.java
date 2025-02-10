@@ -10,13 +10,15 @@ import br.com.powtec.finance.database.library.mapper.CreditCardInstallmentMapper
 import br.com.powtec.finance.database.library.mapper.CreditCardMovementMapper;
 import br.com.powtec.finance.database.library.model.CreditCardInstallmentModel;
 import br.com.powtec.finance.database.library.model.dto.CreditCardInstallmentDTO;
+import br.com.powtec.finance.database.library.model.movement.CreditCardMovementModel;
 
 @Component
 public class CreditCardInstallmentMapperImpl
     implements CreditCardInstallmentMapper {
 
-      @Autowired
-      CreditCardMovementMapper movementMapper;
+  @Autowired
+  CreditCardMovementMapper movementMapper;
+
   @Override
   public CreditCardInstallmentDTO toDto(CreditCardInstallmentModel model) {
     return CreditCardInstallmentDTO.builder()
@@ -42,14 +44,21 @@ public class CreditCardInstallmentMapperImpl
 
   @Override
   public CreditCardInstallmentDTO toDtoOnlyId(CreditCardInstallmentModel model) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'toDtoOnlyId'");
+    return CreditCardInstallmentDTO.builder().id(model.getId()).build();
   }
 
   @Override
   public CreditCardInstallmentModel toModel(CreditCardInstallmentDTO dto) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'toModel'");
+    CreditCardMovementModel movement = new CreditCardMovementModel();
+    movement.setId(dto.getMovement().getId());
+    return CreditCardInstallmentModel.builder()
+      .entryType(dto.getEntryType())
+      .id(dto.getId())
+      .installment(dto.getInstallment())
+      .movement(movement)
+      .referenceMonth(dto.getReferenceMonth())
+      .value(dto.getValue())
+    .build();
   }
 
   @Override
