@@ -17,5 +17,6 @@ public class CreditCardDetailsDTO extends CreditCardDTO{
 
   private Double currentStatementValue;
   private Double lastStatementValue;
+  private Double nextStatementValue;
 
 }

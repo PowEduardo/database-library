@@ -27,4 +27,13 @@ public interface CreditCardRepository
             "    ELSE TO_CHAR(CURRENT_DATE - INTERVAL '1 month', 'YYYY-MM') " +
             "  END", nativeQuery = true)
     Double getLastStatementValue();
+
+    @Query(value = "SELECT SUM(value) " +
+            "FROM tb_credit_card_installment " +
+            "WHERE reference_month = " +
+            "  CASE " +
+            "    WHEN EXTRACT(DAY FROM CURRENT_DATE) >= 2 THEN TO_CHAR(CURRENT_DATE + INTERVAL '2 month', 'YYYY-MM') " +
+            "    ELSE TO_CHAR(CURRENT_DATE + INTERVAL '1 month', 'YYYY-MM') " +
+            "  END", nativeQuery = true)
+    Double getNextStatementValue();
 }
