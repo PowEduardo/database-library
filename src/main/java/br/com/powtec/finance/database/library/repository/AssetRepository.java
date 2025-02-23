@@ -58,4 +58,29 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       AND YEAR(m.date) <= (:year -1)
       """)
   Double calcCurrentAmountYearBefore(@Param("id") Long id, @Param("year") Integer year);
+  @Query("""
+      SELECT SUM(m.unitValue * m.amount) AS total_jcp
+      FROM AssetReturnsMovementModel m
+      WHERE m.stock.id = :id
+      AND YEAR(m.exDividendDate) = (:year)
+      AND m.type = 'JCP'
+      """)
+  Double calcJCP(@Param("id") Long id, @Param("year") Integer year);
+  @Query("""
+      SELECT SUM(m.value) AS total_dividend
+      FROM AssetReturnsMovementModel m
+      WHERE m.stock.id = :id
+      AND YEAR(m.exDividendDate) = (:year)
+      AND m.type != 'JCP'
+      """)
+  Double calcDividend(@Param("id") Long id, @Param("year") Integer year);
+
+  @Query("""
+      SELECT SUM(m.amount * m.unitValue) / SUM(m.amount)
+      FROM AssetMovementModel m
+      WHERE m.asset.id = :id
+      AND m.operation = 'SELL'
+      AND YEAR(m.date) = :year
+      """)
+  Double calcSellValue(@Param("id") Long id, @Param("year") Integer year);
 }
