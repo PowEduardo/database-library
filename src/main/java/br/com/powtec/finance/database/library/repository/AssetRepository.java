@@ -16,7 +16,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
   List<AssetModel> findAllByType(AssetTypeEnum type);
 
   @Query("""
-      SELECT SUM(m.amount * m.unitValue) / SUM(m.amount)
+      SELECT ROUND(SUM(m.amount * m.unitValue) / SUM(m.amount), 2)
       FROM AssetMovementModel m
       WHERE m.asset.id = :id
       AND m.operation = 'BUY'
@@ -38,7 +38,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
   Double calcCurrentAmount(@Param("id") Long id, @Param("year") Integer year);
 
   @Query("""
-      SELECT SUM(m.amount * m.unitValue) / SUM(m.amount)
+      SELECT ROUND(SUM(m.amount * m.unitValue) / SUM(m.amount), 2)
       FROM AssetMovementModel m
       WHERE m.asset.id = :id
       AND m.operation = 'BUY'
