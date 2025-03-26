@@ -19,4 +19,6 @@ public class IRInterfaceModel {
     Double totalJCP;
     Double totalDividend;
     Double totalSellValue;
+    Double totalFutureJCP;
+    Double totalFutureDividend;
 }

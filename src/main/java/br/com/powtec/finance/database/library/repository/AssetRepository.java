@@ -59,21 +59,41 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       """)
   Double calcCurrentAmountYearBefore(@Param("id") Long id, @Param("year") Integer year);
   @Query("""
-      SELECT SUM(m.unitValue * m.amount) AS total_jcp
+      SELECT SUM(m.value) AS total_jcp
       FROM AssetReturnsMovementModel m
       WHERE m.stock.id = :id
       AND YEAR(m.exDividendDate) = (:year)
-      AND m.type = 'JCP'
+      AND m.operation = 'JCP'
       """)
   Double calcJCP(@Param("id") Long id, @Param("year") Integer year);
+
+  @Query("""
+      SELECT SUM(m.value) AS total_jcp
+      FROM AssetReturnsMovementModel m
+      WHERE m.stock.id = :id
+      AND YEAR(m.exDividendDate) = (:year)
+      AND YEAR(m.date) > (:year)
+      AND m.operation = 'JCP'
+      """)
+  Double calcFutureJCP(@Param("id") Long id, @Param("year") Integer year);
   @Query("""
       SELECT SUM(m.value) AS total_dividend
       FROM AssetReturnsMovementModel m
       WHERE m.stock.id = :id
       AND YEAR(m.exDividendDate) = (:year)
-      AND m.type != 'JCP'
+      AND m.operation != 'JCP'
       """)
   Double calcDividend(@Param("id") Long id, @Param("year") Integer year);
+
+  @Query("""
+      SELECT SUM(m.value) AS total_dividend
+      FROM AssetReturnsMovementModel m
+      WHERE m.stock.id = :id
+      AND YEAR(m.exDividendDate) = (:year)
+      AND YEAR(m.date) > (:year)
+      AND m.operation != 'JCP'
+      """)
+  Double calcFutureDividend(@Param("id") Long id, @Param("year") Integer year);
 
   @Query("""
       SELECT SUM(m.amount * m.unitValue) / SUM(m.amount)
