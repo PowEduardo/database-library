@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import br.com.powtec.finance.database.library.enums.CategoryTypeEnum;
 import br.com.powtec.finance.database.library.enums.MovementTypeEnum;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -41,15 +42,14 @@ public class MovementModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   Long id;
-  @Column(name = "tp")
   @Enumerated(EnumType.STRING)
   MovementTypeEnum type;
-  @Column(name = "vl")
   Double value;
   @Column(length = 100)
   String description;
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
   AccountModel account;
   Boolean paid;
-  String category;
+  @Enumerated(EnumType.STRING)
+  CategoryTypeEnum category;
 }

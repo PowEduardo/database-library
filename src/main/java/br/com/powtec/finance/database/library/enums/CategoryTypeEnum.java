@@ -9,5 +9,6 @@ public enum CategoryTypeEnum {
     HEALTH,
     MONTHLY_EXPENSES,
     VEHICLES,
-    TRIP;
+    TRIP,
+    OTHERS;
 }

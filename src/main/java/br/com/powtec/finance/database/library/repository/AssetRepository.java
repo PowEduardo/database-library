@@ -19,7 +19,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       SELECT ROUND(SUM(m.amount * m.unitValue) / SUM(m.amount), 2)
       FROM AssetMovementModel m
       WHERE m.asset.id = :id
-      AND m.operation = 'BUY'
+      AND m.operation IN ('BUY', 'SPLIT')
       AND YEAR(m.date) <= :year
       """)
   Double calcAveragePrice(@Param("id") Long id, @Param("year") Integer year);
@@ -27,7 +27,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
   @Query("""
       SELECT SUM(
         CASE
-          WHEN m.operation = 'BUY' THEN m.amount
+          WHEN m.operation IN ('BUY', 'SPLIT') THEN m.amount
           ELSE m.amount * -1
         END
       ) AS current_amount
@@ -41,7 +41,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       SELECT ROUND(SUM(m.amount * m.unitValue) / SUM(m.amount), 2)
       FROM AssetMovementModel m
       WHERE m.asset.id = :id
-      AND m.operation = 'BUY'
+      AND m.operation IN ('BUY', 'SPLIT')
       AND YEAR(m.date) <= (:year - 1)
       """)
   Double calcAveragePriceYearBefore(@Param("id") Long id, @Param("year") Integer year);
@@ -49,7 +49,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
   @Query("""
       SELECT SUM(
         CASE
-          WHEN m.operation = 'BUY' THEN m.amount
+          WHEN m.operation IN ('BUY', 'SPLIT') THEN m.amount
           ELSE m.amount * -1
         END
       ) AS current_amount
