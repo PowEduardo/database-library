@@ -1,4 +1,4 @@
-package br.com.powtec.finance.database.library.enums;
+package br.com.powtec.finance.database.library.base;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
