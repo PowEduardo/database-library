@@ -18,7 +18,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_vehicles")
-public class VehiclesModel {
+public class VehicleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
