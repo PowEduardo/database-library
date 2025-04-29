@@ -47,8 +47,9 @@ public class VehicleMapperImpl implements VehicleMapper {
 
     @Override
     public List<VehicleDTO> toDtosList(List<VehicleModel> modelList) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toDtosList'");
+        return modelList.stream()
+                .map(this::toDto)
+                .toList();
     }
 
     @Override
