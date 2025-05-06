@@ -19,6 +19,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,6 +50,8 @@ public class MovementModel {
   String description;
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
   AccountModel account;
+  @OneToOne(mappedBy = "movement", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  CreditCardStatementModel creditCardStatement;
   Boolean paid;
   @Enumerated(EnumType.STRING)
   CategoryTypeEnum category;
