@@ -7,23 +7,23 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
-import br.com.powtec.finance.database.library.model.vehicle.VehicleModel;
+import br.com.powtec.finance.database.library.model.vehicle.VehiclePartModel;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 @Component
-public class VehicleSpecification implements BaseCrudSpecification<VehicleModel> {
+public class VehiclePartSpecification implements BaseCrudSpecification<VehiclePartModel> {
 
-  @Override
-  public org.springframework.data.jpa.domain.Specification<VehicleModel> getQuery(String parameters) {
+    @Override
+  public Specification<VehiclePartModel> getQuery(String parameters) {
     return new Specification<>() {
 
       @SuppressWarnings("null")
       @Override
       @Nullable
-      public Predicate toPredicate(Root<VehicleModel> root, CriteriaQuery<?> query,
+      public Predicate toPredicate(Root<VehiclePartModel> root, CriteriaQuery<?> query,
           CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<>();
         if (parameters != null) {
@@ -38,5 +38,4 @@ public class VehicleSpecification implements BaseCrudSpecification<VehicleModel>
 
     };
   }
-
 }
