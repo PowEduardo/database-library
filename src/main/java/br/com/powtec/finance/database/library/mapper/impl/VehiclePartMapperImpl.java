@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.powtec.finance.database.library.mapper.BaseChildCrudMapper;
 import br.com.powtec.finance.database.library.mapper.VehicleMapper;
-import br.com.powtec.finance.database.library.mapper.VehiclePartMapper;
 import br.com.powtec.finance.database.library.model.dto.VehiclePartDTO;
 import br.com.powtec.finance.database.library.model.vehicle.VehiclePartModel;
 
 @Service
-public class VehiclePartMapperImpl implements VehiclePartMapper {
+public class VehiclePartMapperImpl implements BaseChildCrudMapper<VehiclePartModel, VehiclePartDTO> {
 
     @Autowired
     private VehicleMapper vehicleMapper;
@@ -41,27 +41,20 @@ public class VehiclePartMapperImpl implements VehiclePartMapper {
     }
 
     @Override
-    public VehiclePartModel toModel(VehiclePartDTO dto) {
+    public VehiclePartModel toModel(VehiclePartDTO dto, Long parentId) {
         return VehiclePartModel.builder()
                 .description(dto.getDescription())
                 .id(dto.getId())
                 .isUpgrade(dto.getIsUpgrade())
                 .shop(dto.getShop())
                 .value(dto.getValue())
-                .vehicle(vehicleMapper.toModelById(dto.getVehicle().getId()))
+                .vehicle(vehicleMapper.toModelById(parentId))
                 .build();
     }
 
     @Override
-    public VehiclePartModel toModelById(Long id) {
-        return VehiclePartModel.builder()
-                .id(id)
-                .build();
-    }
-
-    @Override
-    public List<VehiclePartModel> toModelsList(List<VehiclePartDTO> dtoList) {
-        return dtoList.stream().map(this::toModel).toList();
+    public List<VehiclePartModel> toModelsList(List<VehiclePartDTO> dtoList, Long parentId) {
+        return dtoList.stream().map(dto -> this.toModel(dto, parentId)).toList();
     }
 
 }

@@ -14,7 +14,7 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 @Component("creditCardMovementSpecification")
-public class CreditCardMovementSpecification implements BaseCrudMovementSpecification<CreditCardMovementModel>{
+public class CreditCardMovementSpecification implements BaseCrudChildSpecification<CreditCardMovementModel>{
 
   @Override
   public Specification<CreditCardMovementModel> getQuery(String parameters, Long parentId) {

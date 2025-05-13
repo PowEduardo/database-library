@@ -15,7 +15,7 @@ import jakarta.persistence.criteria.Root;
 import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Component
-public class MovementSpecification implements BaseCrudMovementSpecification<MovementModel>{
+public class MovementSpecification implements BaseCrudChildSpecification<MovementModel>{
   public Specification<MovementModel> getQuery(String parameters, Long accountId) {
     return new Specification<>() {
 

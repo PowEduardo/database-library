@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Component
-public class AssetReturnsMovementSpecification implements BaseCrudMovementSpecification<AssetReturnsMovementModel> {
+public class AssetReturnsMovementSpecification implements BaseCrudChildSpecification<AssetReturnsMovementModel> {
 
   public Specification<AssetReturnsMovementModel> getQuery(String parameters, Long assetId) {
     return new Specification<>() {
