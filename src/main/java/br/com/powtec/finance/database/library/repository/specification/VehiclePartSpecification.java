@@ -14,10 +14,10 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 
 @Component
-public class VehiclePartSpecification implements BaseCrudSpecification<VehiclePartModel> {
+public class VehiclePartSpecification implements BaseCrudChildSpecification<VehiclePartModel> {
 
     @Override
-  public Specification<VehiclePartModel> getQuery(String parameters) {
+  public Specification<VehiclePartModel> getQuery(String parameters, Long parentId) {
     return new Specification<>() {
 
       @SuppressWarnings("null")
@@ -26,6 +26,9 @@ public class VehiclePartSpecification implements BaseCrudSpecification<VehiclePa
       public Predicate toPredicate(Root<VehiclePartModel> root, CriteriaQuery<?> query,
           CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<>();
+        if (parentId != null && parentId > 0) {
+          predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get("vehicle").get("id"), parentId)));
+        }
         if (parameters != null) {
           for (String param : parameters.split(",")) {
             String keyValue[] = param.split(":");
