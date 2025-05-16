@@ -19,4 +19,5 @@ public class VehiclePartDTO {
     private String shop;
     private Double value;
     private VehicleDTO vehicle;
+    private String partNumber;
 }

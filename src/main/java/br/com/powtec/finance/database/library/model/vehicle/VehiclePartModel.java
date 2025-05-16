@@ -1,6 +1,7 @@
 package br.com.powtec.finance.database.library.model.vehicle;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -27,6 +28,8 @@ public class VehiclePartModel {
     private Long id;
     private String description;
     private Boolean isUpgrade;
+    private String partNumber;
+    @Column(length = 1000)
     private String shop;
     private Double value;
     @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
