@@ -3,7 +3,7 @@ package br.com.powtec.finance.database.library.repository;
 import org.springframework.stereotype.Repository;
 
 import br.com.powtec.finance.database.library.base.BaseCrudRepository;
-import br.com.powtec.finance.database.library.model.VehicleModel;
+import br.com.powtec.finance.database.library.model.vehicle.VehicleModel;
 
 @Repository("vehicleRepository")
 public interface VehicleRepository extends BaseCrudRepository<VehicleModel> {

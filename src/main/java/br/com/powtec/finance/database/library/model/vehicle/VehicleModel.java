@@ -1,9 +1,14 @@
-package br.com.powtec.finance.database.library.model;
+package br.com.powtec.finance.database.library.model.vehicle;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,4 +33,6 @@ public class VehicleModel {
     private Double value;
     private String version;
     private Integer year;
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+    private List<VehiclePartModel> vehiclePart;
 }
