@@ -26,6 +26,7 @@ public class VehicleFuelMapperImpl implements VehicleFuelMapper {
         dto.setPrice(model.getPrice());
         dto.setType(model.getType() != null ? model.getType() : null);
         dto.setValue(model.getValue());
+        dto.setIsFulfilled(model.getIsFulfilled());
         return dto;
     }
 
@@ -60,6 +61,7 @@ public class VehicleFuelMapperImpl implements VehicleFuelMapper {
         model.setPrice(dto.getPrice());
         model.setType(dto.getType() != null ? dto.getType() : null);
         model.setValue(dto.getValue());
+        model.setIsFulfilled(dto.getIsFulfilled());
         VehicleModel vehicle = new VehicleModel();
         vehicle.setId(parentId != null ? parentId : dto.getVehicle().getId());
         model.setVehicle(vehicle);

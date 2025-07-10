@@ -1,5 +1,7 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -18,7 +20,7 @@ import lombok.Setter;
 @JsonInclude(Include.NON_NULL)
 public class VehicleFuelDTO {
     private Double consumption;
-    private String date;
+    private LocalDate date;
     private String description;
     private Long id;
     private Double liters;
@@ -27,4 +29,5 @@ public class VehicleFuelDTO {
     private FuelTypeEnum type;
     private Double value;
     private VehicleDTO vehicle;
+    private Boolean isFulfilled;
 }

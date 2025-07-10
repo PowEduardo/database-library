@@ -1,5 +1,7 @@
 package br.com.powtec.finance.database.library.model.vehicle;
 
+import java.time.LocalDate;
+
 import br.com.powtec.finance.database.library.enums.FuelTypeEnum;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -26,7 +28,7 @@ import lombok.Setter;
 @Table(name = "tb_vehicles_fuel_history")
 public class VehicleFuelModel {
     private Double consumption;
-    private String date;
+    private LocalDate date;
     private String description;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +41,5 @@ public class VehicleFuelModel {
     private Double value;
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false, fetch = FetchType.LAZY)
     private VehicleModel vehicle;
+    private Boolean isFulfilled;
 }
