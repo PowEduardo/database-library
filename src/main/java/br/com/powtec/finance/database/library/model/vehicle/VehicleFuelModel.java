@@ -1,14 +1,17 @@
 package br.com.powtec.finance.database.library.model.vehicle;
 
-import java.util.List;
+import java.time.LocalDate;
 
+import br.com.powtec.finance.database.library.enums.FuelTypeEnum;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,19 +25,21 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "tb_vehicles")
-public class VehicleModel {
+@Table(name = "tb_vehicles_fuel_history")
+public class VehicleFuelModel {
+    private Double consumption;
+    private LocalDate date;
+    private String description;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String manufacturer;
+    private Double liters;
     private Integer milage;
-    private String model;
+    private Double price;
+    @Enumerated(EnumType.STRING)
+    private FuelTypeEnum type;
     private Double value;
-    private String version;
-    private Integer year;
-    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<VehiclePartModel> vehiclePart;
-    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    private List<VehicleFuelModel> vehicleFuel;
+    @ManyToOne(cascade = CascadeType.REFRESH, optional = false, fetch = FetchType.LAZY)
+    private VehicleModel vehicle;
+    private Boolean isFulfilled;
 }
