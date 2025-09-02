@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.mapper.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -22,9 +23,12 @@ public class CreditCardMapperImpl implements CreditCardMapper {
   }
 
   @Override
-  public List<CreditCardDTO> toDtosList(List<CreditCardModel> movementsModel) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'toDtosList'");
+  public List<CreditCardDTO> toDtosList(List<CreditCardModel> modelList) {
+    List<CreditCardDTO> dtosList = new ArrayList<>(modelList.size());
+    for (CreditCardModel model : modelList) {
+      dtosList.add(toDto(model));
+    }
+    return dtosList;
   }
 
   @Override
