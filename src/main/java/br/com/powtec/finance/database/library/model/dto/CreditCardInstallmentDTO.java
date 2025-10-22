@@ -22,6 +22,7 @@ public class CreditCardInstallmentDTO {
   private Double value;
   private EntryTypeEnum entryType;
   private CreditCardMovementDTO movement;
+  private CreditCardStatementDTO statement;
   private String description;
   private LocalDate date;
 }

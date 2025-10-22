@@ -37,4 +37,6 @@ public class CreditCardInstallmentModel {
   private EntryTypeEnum entryType;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
   private CreditCardMovementModel movement;
+  @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+  private CreditCardStatementModel statement;
 }

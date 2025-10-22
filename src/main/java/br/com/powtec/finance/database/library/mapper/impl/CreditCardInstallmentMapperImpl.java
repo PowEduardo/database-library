@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.powtec.finance.database.library.mapper.BaseCrudMapper;
 import br.com.powtec.finance.database.library.mapper.CreditCardInstallmentMapper;
 import br.com.powtec.finance.database.library.mapper.CreditCardMovementMapper;
 import br.com.powtec.finance.database.library.model.CreditCardInstallmentModel;
+import br.com.powtec.finance.database.library.model.CreditCardStatementModel;
 import br.com.powtec.finance.database.library.model.dto.CreditCardInstallmentDTO;
+import br.com.powtec.finance.database.library.model.dto.CreditCardStatementDTO;
 import br.com.powtec.finance.database.library.model.movement.CreditCardMovementModel;
 
 @Component
@@ -18,6 +21,8 @@ public class CreditCardInstallmentMapperImpl
 
   @Autowired
   CreditCardMovementMapper movementMapper;
+  @Autowired
+  BaseCrudMapper<CreditCardStatementModel, CreditCardStatementDTO> statementMapper;
 
   @Override
   public CreditCardInstallmentDTO toDto(CreditCardInstallmentModel model) {
@@ -28,6 +33,7 @@ public class CreditCardInstallmentMapperImpl
         .referenceMonth(model.getReferenceMonth())
         .value(model.getValue())
         .movement(movementMapper.toDtoOnlyId(model.getMovement()))
+        .statement(statementMapper.toDtoOnlyId(model.getStatement()))
         .description(model.getMovement().getDescription())
         .date(model.getMovement().getDate())
         .build();
@@ -56,6 +62,7 @@ public class CreditCardInstallmentMapperImpl
       .id(dto.getId())
       .installment(dto.getInstallment())
       .movement(movement)
+      .statement(statementMapper.toModel(dto.getStatement()))
       .referenceMonth(dto.getReferenceMonth())
       .value(dto.getValue())
     .build();
