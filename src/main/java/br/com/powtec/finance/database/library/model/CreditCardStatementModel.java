@@ -1,6 +1,10 @@
 package br.com.powtec.finance.database.library.model;
 
+import java.time.YearMonth;
+
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +18,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import br.com.powtec.finance.database.library.converter.YearMonthConverter;
 
 @Builder
 @Getter
@@ -27,9 +32,14 @@ public class CreditCardStatementModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String referenceMonth;
+  
+  @Convert(converter = YearMonthConverter.class)
+  @Column(name = "reference_month", columnDefinition = "VARCHAR(7)")
+  private YearMonth referenceMonth;
+  
   private Double discounts;
   private Double value;
+  private Boolean paid;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   private CreditCardModel card;
   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -19,6 +19,7 @@ public class CreditCardMapperImpl implements CreditCardMapper {
         .id(model.getId())
         .name(model.getName())
         .statementDay(model.getStatementDay())
+        .creditLimit(model.getCreditLimit())
         .build();
   }
 

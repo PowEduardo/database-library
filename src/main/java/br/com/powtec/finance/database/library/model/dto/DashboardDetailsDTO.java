@@ -1,7 +1,6 @@
 package br.com.powtec.finance.database.library.model.dto;
 
 import java.time.YearMonth;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,19 +11,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * DTO for dashboard/chart data
+ * Contains aggregated financial information for cards
+ */
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
-public class CreditCardStatementDTO {
-  private Long id;
-  private YearMonth referenceMonth;
-  private Double value;
-  private Double discounts;
-  private Boolean paid;
+public class DashboardDetailsDTO {
   
-  // Relationships (optional)
-  private List<CreditCardInstallmentDTO> installments;
+  private String referenceMonth;
+  private Double value;
+  private Boolean paid;
 }

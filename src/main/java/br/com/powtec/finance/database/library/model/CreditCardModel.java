@@ -36,4 +36,5 @@ public class CreditCardModel {
   private List<CreditCardMovementModel> movements;
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "card")
   private List<CreditCardStatementModel> statements;
+  private Double creditLimit;
 }
