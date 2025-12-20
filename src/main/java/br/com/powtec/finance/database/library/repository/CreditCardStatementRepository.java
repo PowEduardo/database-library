@@ -18,7 +18,7 @@ public interface CreditCardStatementRepository extends BaseCrudRepository<Credit
   Optional<CreditCardStatementModel> getByReferenceMonth(YearMonth referenceMonth);
 
   @Query(value = """
-          SELECT reference_month, SUM(value), paid
+          SELECT reference_month, ROUND(SUM(value)::numeric, 2), paid
           FROM tb_credit_card_statement
           WHERE to_date(reference_month || '-01', 'YYYY-MM-DD')
           BETWEEN
@@ -30,7 +30,7 @@ public interface CreditCardStatementRepository extends BaseCrudRepository<Credit
   List<DashboardDetailsDTO> nextAndPreviousStatements(@Param("referenceMonth")String referenceMonth);
 
   @Query(value = """
-          SELECT reference_month, SUM(value), paid
+          SELECT reference_month, ROUND(SUM(value)::numeric, 2), paid
           FROM tb_credit_card_statement
           WHERE to_date(reference_month || '-01', 'YYYY-MM-DD')
           BETWEEN
@@ -43,13 +43,13 @@ public interface CreditCardStatementRepository extends BaseCrudRepository<Credit
   List<DashboardDetailsDTO> nextAndPreviousStatementsForSpecifycCard(@Param("referenceMonth")String referenceMonth, @Param("cardId")Long cardId);
 
   @Query(value = """
-    SELECT SUM(value) FROM tb_credit_card_installment
+    SELECT ROUND(SUM(value)::numeric, 2) FROM tb_credit_card_installment
     WHERE statement_id = :statementId
     """, nativeQuery = true)
   Double sumStatementValue(@Param("statementId") Long statementId);
 
   @Query(value = """
-    SELECT SUM(value) FROM tb_credit_card_statement
+    SELECT ROUND(SUM(value)::numeric, 2) FROM tb_credit_card_statement
     WHERE card_id = :cardId AND NOT paid
     """, nativeQuery = true)
   Double sumStatementValueFromCard(@Param("cardId") Long cardId);

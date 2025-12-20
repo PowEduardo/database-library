@@ -9,8 +9,8 @@ import br.com.powtec.finance.database.library.model.CreditCardModel;
 @Repository("creditCardRepository")
 public interface CreditCardRepository
         extends BaseCrudRepository<CreditCardModel> {
-
-    @Query(value = "SELECT SUM(value) " +
+                
+    @Query(value = "SELECT ROUND(SUM(value),2) " +
             "FROM tb_credit_card_installment " +
             "WHERE reference_month = " +
             "  CASE " +
