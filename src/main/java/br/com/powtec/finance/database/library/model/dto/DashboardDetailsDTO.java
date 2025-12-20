@@ -1,6 +1,6 @@
 package br.com.powtec.finance.database.library.model.dto;
 
-import java.time.YearMonth;
+import java.math.BigDecimal;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -24,6 +24,6 @@ import lombok.Setter;
 public class DashboardDetailsDTO {
   
   private String referenceMonth;
-  private Double value;
+  private BigDecimal value;
   private Boolean paid;
 }
