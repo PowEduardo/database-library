@@ -12,6 +12,7 @@ import br.com.powtec.finance.database.library.mapper.CreditCardMovementMapper;
 import br.com.powtec.finance.database.library.model.CreditCardInstallmentModel;
 import br.com.powtec.finance.database.library.model.CreditCardStatementModel;
 import br.com.powtec.finance.database.library.model.dto.CreditCardInstallmentDTO;
+import br.com.powtec.finance.database.library.model.dto.CreditCardMovementDTO;
 import br.com.powtec.finance.database.library.model.dto.CreditCardStatementDTO;
 import br.com.powtec.finance.database.library.model.movement.CreditCardMovementModel;
 
@@ -26,13 +27,15 @@ public class CreditCardInstallmentMapperImpl
 
   @Override
   public CreditCardInstallmentDTO toDto(CreditCardInstallmentModel model) {
+    CreditCardMovementDTO movementDto = movementMapper.toDtoOnlyId(model.getMovement());
+    movementDto.setInstallment(model.getMovement().getInstallment());
     return CreditCardInstallmentDTO.builder()
         .id(model.getId())
         .entryType(model.getEntryType())
         .installment(model.getInstallment())
         .referenceMonth(model.getReferenceMonth())
         .value(model.getValue())
-        .movement(movementMapper.toDtoOnlyId(model.getMovement()))
+        .movement(movementDto)
         .statement(statementMapper.toDtoOnlyId(model.getStatement()))
         .description(model.getMovement().getDescription())
         .date(model.getMovement().getDate())
