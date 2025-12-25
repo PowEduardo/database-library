@@ -38,6 +38,16 @@ public class CreditCardMovementSpecification implements BaseCrudChildSpecificati
                   .and(criteriaBuilder.equal(root.get("installments").get("referenceMonth"), keyValue[1])));
             }
              else {
+              Boolean booleanValue = null;
+              if (keyValue[1].equals("true")) {
+                booleanValue = true;
+              } else if (keyValue[1].equals("false")) {
+                booleanValue = false;
+              }
+              if (booleanValue != null) {
+                predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(keyValue[0]), booleanValue)));
+                continue;
+              }
               predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(keyValue[0]), keyValue[1])));
             }
           }

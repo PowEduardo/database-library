@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -35,10 +36,13 @@ public class CreditCardStatementModel {
   
   @Convert(converter = YearMonthConverter.class)
   @Column(name = "reference_month", columnDefinition = "VARCHAR(7)")
+  @NotNull
   private YearMonth referenceMonth;
-  
+  @NotNull
   private Double discounts;
+  @NotNull
   private Double value;
+  @NotNull
   private Boolean paid;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   private CreditCardModel card;
