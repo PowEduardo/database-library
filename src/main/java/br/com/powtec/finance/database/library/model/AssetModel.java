@@ -1,11 +1,13 @@
 package br.com.powtec.finance.database.library.model;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import br.com.powtec.finance.database.library.enums.AssetTypeEnum;
 import br.com.powtec.finance.database.library.model.movement.AssetMovementModel;
 import br.com.powtec.finance.database.library.model.movement.AssetReturnsMovementModel;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -37,7 +39,8 @@ public class AssetModel {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   private String ticker;
-  private Double value;
+  @Column(scale = 6)
+  private BigDecimal value;
   @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY, mappedBy = "asset")
   private List<AssetMovementModel> movements;
   @OneToMany(cascade = { CascadeType.REFRESH, CascadeType.REMOVE }, fetch = FetchType.LAZY, mappedBy = "stock")

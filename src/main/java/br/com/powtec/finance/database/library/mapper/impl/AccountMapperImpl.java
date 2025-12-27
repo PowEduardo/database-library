@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.mapper.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -24,9 +25,12 @@ public class AccountMapperImpl implements AccountMapper {
   }
 
   @Override
-  public List<AccountDTO> toDtosList(List<AccountModel> movementsModel) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'toDtosList'");
+  public List<AccountDTO> toDtosList(List<AccountModel> modelList) {
+    List<AccountDTO> dtosList = new ArrayList<>(modelList.size());
+    for (AccountModel model : modelList) {
+      dtosList.add(toDto(model));
+    }
+    return dtosList;
   }
 
   @Override

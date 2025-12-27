@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.movement;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import br.com.powtec.finance.database.library.enums.AssetOperationEnum;
@@ -27,15 +28,15 @@ import lombok.Setter;
 @Table(name = "tb_movements_asset")
 public class AssetMovementModel extends MovementModel {
 
-  private Double amount;
+  private BigDecimal amount;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   @JoinColumn(name = "asset_id")
   @NotNull
   private AssetModel asset;
   private LocalDate dueDate;
-  private Double liquidationFee;
+  private BigDecimal liquidationFee;
   @Enumerated(EnumType.STRING)
   @NotNull
   private AssetOperationEnum operation;
-  private Double unitValue;
+  private BigDecimal unitValue;
 }

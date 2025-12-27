@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -45,7 +46,8 @@ public class MovementModel {
   Long id;
   @Enumerated(EnumType.STRING)
   MovementTypeEnum type;
-  Double value;
+  @Column(scale = 2)
+  BigDecimal value;
   @Column(length = 100)
   String description;
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)

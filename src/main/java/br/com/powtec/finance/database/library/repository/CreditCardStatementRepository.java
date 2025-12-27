@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.repository;
 
+import java.math.BigDecimal;
 import java.time.YearMonth;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.powtec.finance.database.library.base.BaseCrudRepository;
 import br.com.powtec.finance.database.library.model.CreditCardStatementModel;
-import br.com.powtec.finance.database.library.model.dto.DashboardDetailsDTO;
+import br.com.powtec.finance.database.library.model.dto.dashboard.DashboardDetailsDTO;
 
 @Repository
 public interface CreditCardStatementRepository extends BaseCrudRepository<CreditCardStatementModel> {
@@ -46,12 +47,12 @@ public interface CreditCardStatementRepository extends BaseCrudRepository<Credit
     SELECT ROUND(SUM(value)::numeric, 2) FROM tb_credit_card_installment
     WHERE statement_id = :statementId
     """, nativeQuery = true)
-  Double sumStatementValue(@Param("statementId") Long statementId);
+  BigDecimal sumStatementValue(@Param("statementId") Long statementId);
 
   @Query(value = """
     SELECT ROUND(SUM(value)::numeric, 2) FROM tb_credit_card_statement
     WHERE card_id = :cardId AND NOT paid
     """, nativeQuery = true)
-  Double sumStatementValueFromCard(@Param("cardId") Long cardId);
+  BigDecimal sumStatementValueFromCard(@Param("cardId") Long cardId);
 
 }

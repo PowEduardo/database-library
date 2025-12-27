@@ -1,5 +1,7 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.math.BigDecimal;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -16,9 +18,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class AssetConsolidatedDTO {
-  private Double paidValue;
-  private Double currentValue;
-  private Double wantedValue;
-  private Double totalReturns;
-  private Double difference;
+  private BigDecimal paidValue;
+  private BigDecimal currentValue;
+  private BigDecimal wantedValue;
+  private BigDecimal totalReturns;
+  private BigDecimal difference;
 }

@@ -1,10 +1,12 @@
-package br.com.powtec.finance.database.library.model.dto;
+package br.com.powtec.finance.database.library.model.dto.dashboard;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import br.com.powtec.finance.database.library.enums.ChartTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,7 +15,6 @@ import lombok.Setter;
 
 /**
  * DTO for dashboard/chart data
- * Contains aggregated financial information for cards
  */
 @AllArgsConstructor
 @Builder
@@ -22,11 +23,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class DashboardDTO {
-  
-  private Double totalPaid;
-  private Double totalUnpaid;
-  private Double balance;
-  private Double creditLimit;
-  private Double availableCredit;
+  private ChartTypeEnum chartType;
+  private BigDecimal totalPaid;
+  private BigDecimal totalUnpaid;
+  private BigDecimal balance;
+  private BigDecimal creditLimit;
+  private BigDecimal availableCredit;
+  private AccountDashboardDetailsDTO accountDetails;
   private List<DashboardDetailsDTO> details;
+  private List<DashboardBarChartDetailsDTO> barChartDetails;
 }

@@ -1,5 +1,7 @@
 package br.com.powtec.finance.database.library.model.vehicle;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,7 +33,7 @@ public class VehiclePartModel {
     private String partNumber;
     @Column(length = 1000)
     private String shop;
-    private Double value;
+    private BigDecimal value;
     @ManyToOne(optional = false, fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     private VehicleModel vehicle;
 }

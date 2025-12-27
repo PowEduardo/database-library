@@ -1,5 +1,7 @@
 package br.com.powtec.finance.database.library.model;
 
+import java.math.BigDecimal;
+
 import br.com.powtec.finance.database.library.enums.IndexerEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -17,5 +19,5 @@ import lombok.Setter;
 public class AssetFixedIncomeModel extends AssetModel {
 
   private IndexerEnum indexer;
-  private Double interestRate;
+  private BigDecimal interestRate;
 }

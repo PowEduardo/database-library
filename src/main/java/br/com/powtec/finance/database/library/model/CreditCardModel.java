@@ -1,10 +1,12 @@
 package br.com.powtec.finance.database.library.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 import br.com.powtec.finance.database.library.model.movement.CreditCardMovementModel;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -36,5 +38,6 @@ public class CreditCardModel {
   private List<CreditCardMovementModel> movements;
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true, mappedBy = "card")
   private List<CreditCardStatementModel> statements;
-  private Double creditLimit;
+  @Column(scale = 2)
+  private BigDecimal creditLimit;
 }

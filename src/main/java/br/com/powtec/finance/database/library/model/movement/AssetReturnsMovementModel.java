@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.movement;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import br.com.powtec.finance.database.library.enums.AssetReturnsOperationEnum;
@@ -28,11 +29,11 @@ public class AssetReturnsMovementModel extends MovementModel {
 
   private Integer amount;
   private LocalDate exDividendDate;
-  private Double irFee;
+  private BigDecimal irFee;
   @Enumerated(EnumType.STRING)
   private AssetReturnsOperationEnum operation;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   @JoinColumn(name = "asset_id")
   private AssetModel stock;
-  private Double unitValue;
+  private BigDecimal unitValue;
 }
