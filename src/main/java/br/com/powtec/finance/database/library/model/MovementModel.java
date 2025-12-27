@@ -21,6 +21,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -57,4 +58,11 @@ public class MovementModel {
   Boolean paid;
   @Enumerated(EnumType.STRING)
   CategoryTypeEnum category;
+
+  @PrePersist
+  public void prePersist() {
+    if (paid == null) {
+      paid = false;
+    }
+  }
 }
