@@ -7,6 +7,7 @@ import br.com.powtec.finance.database.library.enums.AssetOperationEnum;
 import br.com.powtec.finance.database.library.model.AssetModel;
 import br.com.powtec.finance.database.library.model.MovementModel;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -34,9 +35,11 @@ public class AssetMovementModel extends MovementModel {
   @NotNull
   private AssetModel asset;
   private LocalDate dueDate;
+  @Column(scale = 6)
   private BigDecimal liquidationFee;
   @Enumerated(EnumType.STRING)
   @NotNull
   private AssetOperationEnum operation;
+  @Column(scale = 6)
   private BigDecimal unitValue;
 }

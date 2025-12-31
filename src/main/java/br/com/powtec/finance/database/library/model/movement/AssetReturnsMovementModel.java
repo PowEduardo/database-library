@@ -7,6 +7,7 @@ import br.com.powtec.finance.database.library.enums.AssetReturnsOperationEnum;
 import br.com.powtec.finance.database.library.model.AssetModel;
 import br.com.powtec.finance.database.library.model.MovementModel;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,11 +30,13 @@ public class AssetReturnsMovementModel extends MovementModel {
 
   private Integer amount;
   private LocalDate exDividendDate;
+  @Column(scale = 6)
   private BigDecimal irFee;
   @Enumerated(EnumType.STRING)
   private AssetReturnsOperationEnum operation;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   @JoinColumn(name = "asset_id")
   private AssetModel stock;
+  @Column(scale = 6)
   private BigDecimal unitValue;
 }
