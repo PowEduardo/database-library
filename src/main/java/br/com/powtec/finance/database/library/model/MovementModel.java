@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -20,6 +21,7 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,7 +47,8 @@ public class MovementModel {
   Long id;
   @Enumerated(EnumType.STRING)
   MovementTypeEnum type;
-  Double value;
+  @Column(scale = 2)
+  BigDecimal value;
   @Column(length = 100)
   String description;
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
@@ -55,4 +58,11 @@ public class MovementModel {
   Boolean paid;
   @Enumerated(EnumType.STRING)
   CategoryTypeEnum category;
+
+  @PrePersist
+  public void prePersist() {
+    if (paid == null) {
+      paid = false;
+    }
+  }
 }

@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import br.com.powtec.finance.database.library.enums.AssetReturnsOperationEnum;
@@ -17,8 +18,8 @@ public class AssetReturnsMovementDTO extends MovementDTO {
   private Integer amount;
   private AssetDTO asset;
   private AssetReturnsOperationEnum operation;
-  private Double unitValue;
+  private BigDecimal unitValue;
   private LocalDate exDividendDate;
-  private Double irFee;
+  private BigDecimal irFee;
 
 }

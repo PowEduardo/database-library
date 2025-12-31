@@ -1,5 +1,7 @@
 package br.com.powtec.finance.database.library.model.asset;
 
+import java.math.BigDecimal;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,13 +14,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 public class IRInterfaceModel {
-    Double averagePrice;
-    Double totalValue;
-    Double totalAmount;
-    Double totalValueLastYear;
-    Double totalJCP;
-    Double totalDividend;
-    Double totalSellValue;
-    Double totalFutureJCP;
-    Double totalFutureDividend;
+    BigDecimal averagePrice;
+    BigDecimal totalValue;
+    BigDecimal totalAmount;
+    BigDecimal totalValueLastYear;
+    BigDecimal totalJCP;
+    BigDecimal totalDividend;
+    BigDecimal totalSellValue;
+    BigDecimal totalFutureJCP;
+    BigDecimal totalFutureDividend;
 }

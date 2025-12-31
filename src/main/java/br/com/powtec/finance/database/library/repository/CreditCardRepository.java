@@ -1,5 +1,7 @@
 package br.com.powtec.finance.database.library.repository;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +19,7 @@ public interface CreditCardRepository
             "    WHEN EXTRACT(DAY FROM CURRENT_DATE) <= 2 THEN TO_CHAR(CURRENT_DATE, 'YYYY-MM') " +
             "    ELSE TO_CHAR(CURRENT_DATE + INTERVAL '1 month', 'YYYY-MM') " +
             "  END", nativeQuery = true)
-    Double getCurrentStatementValue();
+    BigDecimal getCurrentStatementValue();
 
     @Query(value = "SELECT SUM(value) " +
             "FROM tb_credit_card_installment " +
@@ -26,7 +28,7 @@ public interface CreditCardRepository
             "    WHEN EXTRACT(DAY FROM CURRENT_DATE) >= 2 THEN TO_CHAR(CURRENT_DATE, 'YYYY-MM') " +
             "    ELSE TO_CHAR(CURRENT_DATE - INTERVAL '1 month', 'YYYY-MM') " +
             "  END", nativeQuery = true)
-    Double getLastStatementValue();
+    BigDecimal getLastStatementValue();
 
     @Query(value = "SELECT SUM(value) " +
             "FROM tb_credit_card_installment " +
@@ -35,5 +37,5 @@ public interface CreditCardRepository
             "    WHEN EXTRACT(DAY FROM CURRENT_DATE) >= 2 THEN TO_CHAR(CURRENT_DATE + INTERVAL '2 month', 'YYYY-MM') " +
             "    ELSE TO_CHAR(CURRENT_DATE + INTERVAL '1 month', 'YYYY-MM') " +
             "  END", nativeQuery = true)
-    Double getNextStatementValue();
+    BigDecimal getNextStatementValue();
 }

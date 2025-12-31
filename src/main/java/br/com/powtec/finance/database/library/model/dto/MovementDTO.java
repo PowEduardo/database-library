@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,7 +24,7 @@ public class MovementDTO {
 
   Long id;
   LocalDate date;
-  Double value;
+  BigDecimal value;
   MovementTypeEnum type;
   String description;
   Boolean paid;

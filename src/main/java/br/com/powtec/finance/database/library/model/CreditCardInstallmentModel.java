@@ -1,8 +1,11 @@
 package br.com.powtec.finance.database.library.model;
 
+import java.math.BigDecimal;
+
 import br.com.powtec.finance.database.library.enums.EntryTypeEnum;
 import br.com.powtec.finance.database.library.model.movement.CreditCardMovementModel;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -32,7 +35,8 @@ public class CreditCardInstallmentModel {
   private Long id;
   private Integer installment;
   private String referenceMonth;
-  private Double value;
+  @Column(scale = 2)
+  private BigDecimal value;
   @Enumerated(EnumType.STRING)
   private EntryTypeEnum entryType;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

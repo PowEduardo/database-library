@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,15 +20,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @JsonInclude(Include.NON_NULL)
 public class VehicleFuelDTO {
-    private Double consumption;
+    private BigDecimal consumption;
     private LocalDate date;
     private String description;
     private Long id;
-    private Double liters;
+    private BigDecimal liters;
     private Integer milage;
-    private Double price;
+    private BigDecimal price;
     private FuelTypeEnum type;
-    private Double value;
+    private BigDecimal value;
     private VehicleDTO vehicle;
     private Boolean isFulfilled;
 }

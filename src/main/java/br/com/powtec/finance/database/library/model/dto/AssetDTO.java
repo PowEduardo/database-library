@@ -1,5 +1,7 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.math.BigDecimal;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -22,9 +24,9 @@ public class AssetDTO {
 
   private Long id;
   private String ticker;
-  private Double value;
+  private BigDecimal value;
   @NotBlank
   private AssetTypeEnum type;
-  private Double interestRate;
+  private BigDecimal interestRate;
   private IndexerEnum indexer;
 }

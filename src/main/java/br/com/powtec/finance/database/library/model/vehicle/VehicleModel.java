@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.vehicle;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -30,7 +31,7 @@ public class VehicleModel {
     private String manufacturer;
     private Integer milage;
     private String model;
-    private Double value;
+    private BigDecimal value;
     private String version;
     private Integer year;
     @OneToMany(mappedBy = "vehicle", cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)

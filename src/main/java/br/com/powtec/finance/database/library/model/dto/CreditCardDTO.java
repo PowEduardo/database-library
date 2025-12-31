@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -29,8 +30,8 @@ public class CreditCardDTO {
   private String cardNumber;
   private String cardType;
   private String bank;
-  private Double balance;
-  private Double creditLimit;
+  private BigDecimal balance;
+  private BigDecimal creditLimit;
   
   // Relationships (optional, included on detailed queries)
   private List<CreditCardMovementDTO> movements;

@@ -1,7 +1,9 @@
 package br.com.powtec.finance.database.library.model;
 
+import java.math.BigDecimal;
 import java.time.YearMonth;
 
+import br.com.powtec.finance.database.library.converter.YearMonthConverter;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
@@ -19,7 +21,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import br.com.powtec.finance.database.library.converter.YearMonthConverter;
 
 @Builder
 @Getter
@@ -39,9 +40,10 @@ public class CreditCardStatementModel {
   @NotNull
   private YearMonth referenceMonth;
   @NotNull
-  private Double discounts;
+  private BigDecimal discounts;
   @NotNull
-  private Double value;
+  @Column(scale = 2)
+  private BigDecimal value;
   @NotNull
   private Boolean paid;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)

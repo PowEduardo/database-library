@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import br.com.powtec.finance.database.library.enums.AssetOperationEnum;
@@ -15,10 +16,10 @@ import lombok.Setter;
 public class AssetMovementDTO extends MovementDTO {
 
   AssetDTO asset;
-  Double amount;
+  BigDecimal amount;
   LocalDate dueDate;
-  private Double liquidationFee;
+  private BigDecimal liquidationFee;
   AssetOperationEnum operation;
-  Double unitValue;
+  BigDecimal unitValue;
 
 }

@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.dto;
 
+import java.math.BigDecimal;
 import java.time.YearMonth;
 import java.util.List;
 
@@ -11,7 +12,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 @AllArgsConstructor
 @Builder
 @Getter
@@ -21,8 +21,8 @@ import lombok.Setter;
 public class CreditCardStatementDTO {
   private Long id;
   private YearMonth referenceMonth;
-  private Double value;
-  private Double discounts;
+  private BigDecimal value;
+  private BigDecimal discounts;
   private Boolean paid;
   
   // Relationships (optional)

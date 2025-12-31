@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.model.vehicle;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import br.com.powtec.finance.database.library.enums.FuelTypeEnum;
@@ -27,18 +28,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "tb_vehicles_fuel_history")
 public class VehicleFuelModel {
-    private Double consumption;
+    private BigDecimal consumption;
     private LocalDate date;
     private String description;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Double liters;
+    private BigDecimal liters;
     private Integer milage;
-    private Double price;
+    private BigDecimal price;
     @Enumerated(EnumType.STRING)
     private FuelTypeEnum type;
-    private Double value;
+    private BigDecimal value;
     @ManyToOne(cascade = CascadeType.REFRESH, optional = false, fetch = FetchType.LAZY)
     private VehicleModel vehicle;
     private Boolean isFulfilled;

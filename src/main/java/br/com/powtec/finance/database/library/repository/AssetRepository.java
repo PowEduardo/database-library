@@ -1,5 +1,6 @@
 package br.com.powtec.finance.database.library.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,7 +23,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       AND m.operation IN ('BUY', 'SPLIT')
       AND YEAR(m.date) <= :year
       """)
-  Double calcAveragePrice(@Param("id") Long id, @Param("year") Integer year);
+  BigDecimal calcAveragePrice(@Param("id") Long id, @Param("year") Integer year);
 
   @Query("""
       SELECT SUM(
@@ -35,7 +36,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       WHERE m.asset.id = :id
       AND YEAR(m.date) <= :year
       """)
-  Double calcCurrentAmount(@Param("id") Long id, @Param("year") Integer year);
+  BigDecimal calcCurrentAmount(@Param("id") Long id, @Param("year") Integer year);
 
   @Query("""
       SELECT ROUND(SUM(m.amount * m.unitValue) / SUM(m.amount), 2)
@@ -44,7 +45,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       AND m.operation IN ('BUY', 'SPLIT')
       AND YEAR(m.date) <= (:year - 1)
       """)
-  Double calcAveragePriceYearBefore(@Param("id") Long id, @Param("year") Integer year);
+  BigDecimal calcAveragePriceYearBefore(@Param("id") Long id, @Param("year") Integer year);
 
   @Query("""
       SELECT SUM(
@@ -57,7 +58,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       WHERE m.asset.id = :id
       AND YEAR(m.date) <= (:year -1)
       """)
-  Double calcCurrentAmountYearBefore(@Param("id") Long id, @Param("year") Integer year);
+  BigDecimal calcCurrentAmountYearBefore(@Param("id") Long id, @Param("year") Integer year);
   @Query("""
       SELECT SUM(m.value) AS total_jcp
       FROM AssetReturnsMovementModel m
@@ -65,7 +66,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       AND YEAR(m.date) = (:year)
       AND m.operation = 'JCP'
       """)
-  Double calcJCP(@Param("id") Long id, @Param("year") Integer year);
+  BigDecimal calcJCP(@Param("id") Long id, @Param("year") Integer year);
 
   @Query("""
       SELECT SUM(m.value) AS total_jcp
@@ -75,7 +76,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       AND (YEAR(m.date) > (:year) OR m.date IS NULL)
       AND m.operation = 'JCP'
       """)
-  Double calcFutureJCP(@Param("id") Long id, @Param("year") Integer year);
+  BigDecimal calcFutureJCP(@Param("id") Long id, @Param("year") Integer year);
   @Query("""
       SELECT SUM(m.value) AS total_dividend
       FROM AssetReturnsMovementModel m
@@ -83,7 +84,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       AND YEAR(m.date) = (:year)
       AND m.operation != 'JCP'
       """)
-  Double calcDividend(@Param("id") Long id, @Param("year") Integer year);
+  BigDecimal calcDividend(@Param("id") Long id, @Param("year") Integer year);
 
   @Query("""
       SELECT SUM(m.value) AS total_dividend
@@ -93,7 +94,7 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       AND YEAR(m.date) > (:year)
       AND m.operation != 'JCP'
       """)
-  Double calcFutureDividend(@Param("id") Long id, @Param("year") Integer year);
+  BigDecimal calcFutureDividend(@Param("id") Long id, @Param("year") Integer year);
 
   @Query("""
       SELECT SUM(m.amount * m.unitValue) / SUM(m.amount)
@@ -102,5 +103,5 @@ public interface AssetRepository extends JpaRepository<AssetModel, Long>, JpaSpe
       AND m.operation = 'SELL'
       AND YEAR(m.date) = :year
       """)
-  Double calcSellValue(@Param("id") Long id, @Param("year") Integer year);
+  BigDecimal calcSellValue(@Param("id") Long id, @Param("year") Integer year);
 }

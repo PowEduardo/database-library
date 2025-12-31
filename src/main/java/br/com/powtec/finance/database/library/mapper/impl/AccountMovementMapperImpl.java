@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import br.com.powtec.finance.database.library.enums.MovementTypeEnum;
 import br.com.powtec.finance.database.library.mapper.MovementMapper;
 import br.com.powtec.finance.database.library.model.AccountModel;
 import br.com.powtec.finance.database.library.model.MovementModel;
@@ -19,7 +18,6 @@ public class AccountMovementMapperImpl extends MovementAbstractMapper
   public MovementDTO toDto(MovementModel model) {
     MovementDTO dto = new MovementDTO();
     super.toDto(model, dto);
-    dto.setValue(model.getType() == MovementTypeEnum.DEBIT ? model.getValue() * -1.0 : model.getValue());
     return dto;
   }
 
