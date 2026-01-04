@@ -16,9 +16,10 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @Component
-public class AssetMovementSpecification {
+public class AssetMovementSpecification implements BaseCrudChildSpecification<AssetMovementModel>{
 
-  public static Specification<AssetMovementModel> getQuery(String parameters, Long assetId) {
+  @Override
+  public Specification<AssetMovementModel> getQuery(String parameters, Long assetId) {
     return new Specification<>() {
 
       @SuppressWarnings("null")
