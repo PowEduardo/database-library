@@ -35,7 +35,13 @@ public class MovementSpecification implements BaseCrudChildSpecification<Movemen
             String keyValue[] = param.split(":");
             if (keyValue[0].equals("date")) {
               String dateRange[] = keyValue[1].split(";");
-              predicates.add(criteriaBuilder.between(root.get("date"), LocalDate.parse(dateRange[0]), LocalDate.parse(dateRange[1])));
+              if (dateRange.length == 2) {
+                predicates.add(criteriaBuilder.between(root.get("date"), LocalDate.parse(dateRange[0]), LocalDate.parse(dateRange[1])));
+              } else if (dateRange.length == 1) {
+                predicates.add(criteriaBuilder.greaterThan(root.get("date"), LocalDate.parse(dateRange[0])));
+              } else {
+                predicates.add(criteriaBuilder.equal(root.get("date"), LocalDate.parse(dateRange[0])));
+              }
             } else {
               predicates.add(criteriaBuilder.and(criteriaBuilder.equal(root.get(keyValue[0]), keyValue[1])));
             }
