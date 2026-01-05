@@ -30,7 +30,9 @@ public interface MovementRepository<T extends MovementModel> extends BaseCrudRep
             FROM months m
             LEFT JOIN tb_movements t
               ON date_trunc('month', t.date) = m.month
-              WHERE t.account_id = :accountId
+            LEFT JOIN tb_movements_asset t2
+                ON t2.id = t.id
+              WHERE t.account_id = :accountId AND t2.id IS NULL
             GROUP BY m.month
             ORDER BY m.month;
                     """, nativeQuery = true)
@@ -57,7 +59,9 @@ public interface MovementRepository<T extends MovementModel> extends BaseCrudRep
             FROM months m
             LEFT JOIN tb_movements t
               ON date_trunc('month', t.date) = m.month
-              WHERE t.account_id = :accountId
+              LEFT JOIN tb_movements_asset t2
+                ON t2.id = t.id
+              WHERE t.account_id = :accountId AND t2.id IS NULL
                     """, nativeQuery = true)
     public List<AccountDashboardDetails> getBalanceForAggregatedIncomeExpenseByMonth(
             @Param("accountId") Long accountId,
