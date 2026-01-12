@@ -23,7 +23,7 @@ public class CreditCardStatementDTO {
   private YearMonth referenceMonth;
   private BigDecimal value;
   private BigDecimal discounts;
-  private Boolean paid;
+  private Boolean closed;
   
   // Relationships (optional)
   private List<CreditCardInstallmentDTO> installments;

@@ -45,7 +45,7 @@ public class CreditCardStatementModel {
   @Column(scale = 2)
   private BigDecimal value;
   @NotNull
-  private Boolean paid;
+  private Boolean closed;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   private CreditCardModel card;
   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

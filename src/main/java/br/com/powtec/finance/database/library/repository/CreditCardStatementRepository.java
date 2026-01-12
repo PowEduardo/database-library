@@ -19,26 +19,26 @@ public interface CreditCardStatementRepository extends BaseCrudRepository<Credit
   Optional<CreditCardStatementModel> getByReferenceMonth(YearMonth referenceMonth);
 
   @Query(value = """
-          SELECT reference_month, ROUND(SUM(value)::numeric, 2), paid
+          SELECT reference_month, ROUND(SUM(value)::numeric, 2), closed
           FROM tb_credit_card_statement
           WHERE to_date(reference_month || '-01', 'YYYY-MM-DD')
           BETWEEN
                 (to_date(:referenceMonth || '-01', 'YYYY-MM-DD') - INTERVAL '12 months')
             AND (to_date(:referenceMonth || '-01', 'YYYY-MM-DD') + INTERVAL '1 month')
-          GROUP BY reference_month, value, paid
+          GROUP BY reference_month, value, closed
           ORDER BY reference_month ASC
       """, nativeQuery = true)
   List<DashboardDetailsDTO> nextAndPreviousStatements(@Param("referenceMonth")String referenceMonth);
 
   @Query(value = """
-          SELECT reference_month, ROUND(SUM(value)::numeric, 2) AS total, paid
+          SELECT reference_month, ROUND(SUM(value)::numeric, 2) AS total, closed
           FROM tb_credit_card_statement
           WHERE to_date(reference_month || '-01', 'YYYY-MM-DD')
           BETWEEN
                 (to_date(:referenceMonth || '-01', 'YYYY-MM-DD') - INTERVAL '12 months')
             AND (to_date(:referenceMonth || '-01', 'YYYY-MM-DD') + INTERVAL '1 month')
             AND card_id = :cardId
-          GROUP BY reference_month, paid
+          GROUP BY reference_month, closed
           ORDER BY reference_month ASC
       """, nativeQuery = true)
   List<DashboardDetailsDTO> nextAndPreviousStatementsForSpecifycCard(@Param("referenceMonth")String referenceMonth, @Param("cardId")Long cardId);
@@ -51,7 +51,7 @@ public interface CreditCardStatementRepository extends BaseCrudRepository<Credit
 
   @Query(value = """
     SELECT ROUND(SUM(value)::numeric, 2) FROM tb_credit_card_statement
-    WHERE card_id = :cardId AND NOT paid
+    WHERE card_id = :cardId AND NOT closed
     """, nativeQuery = true)
   BigDecimal sumStatementValueFromCard(@Param("cardId") Long cardId);
 

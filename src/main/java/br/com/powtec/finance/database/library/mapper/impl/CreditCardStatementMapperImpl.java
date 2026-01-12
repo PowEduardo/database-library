@@ -19,7 +19,7 @@ public class CreditCardStatementMapperImpl implements BaseCrudMapper<CreditCardS
         .referenceMonth(model.getReferenceMonth())
         .value(model.getValue())
         .discounts(model.getDiscounts())
-        .paid(model.getPaid())
+        .closed(model.getClosed())
         .build();
   }
 
