@@ -55,7 +55,7 @@ public interface MovementRepository<T extends MovementModel> extends BaseCrudRep
                     WHEN t.type = 'DEBIT'  THEN -t.value
                 END), 0)::numeric AS balance,
                 COALESCE(COUNT(CASE WHEN t.paid THEN 1 END), 0)::integer AS total_paid,
-	            COALESCE(COUNT(CASE WHEN NOT t.paid THEN 1 END), 0)::integer AS total_unpaid
+	            COALESCE(COUNT(CASE WHEN NOT t.paid AND t.date <= CURRENT_DATE THEN 1 END), 0)::integer AS total_unpaid
             FROM months m
             LEFT JOIN tb_movements t
               ON date_trunc('month', t.date) = m.month
