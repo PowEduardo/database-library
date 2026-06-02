@@ -2,7 +2,10 @@ package br.com.powtec.finance.database.library.mapper.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import br.com.powtec.finance.database.library.mapper.BaseCrudMapper;
@@ -12,15 +15,28 @@ import br.com.powtec.finance.database.library.model.dto.CreditCardStatementDTO;
 @Component
 public class CreditCardStatementMapperImpl implements BaseCrudMapper<CreditCardStatementModel, CreditCardStatementDTO> {
 
+  @Lazy
+  @Autowired(required = false)
+  private CreditCardInstallmentMapperImpl installmentMapper;
+
   @Override
   public CreditCardStatementDTO toDto(CreditCardStatementModel model) {
-    return CreditCardStatementDTO.builder()
+    CreditCardStatementDTO dto = CreditCardStatementDTO.builder()
         .id(model.getId())
         .referenceMonth(model.getReferenceMonth())
         .value(model.getValue())
         .discounts(model.getDiscounts())
         .closed(model.getClosed())
         .build();
+    
+    // Map installments if they exist
+    if (model.getInstallments() != null && !model.getInstallments().isEmpty() && installmentMapper != null) {
+      dto.setInstallments(model.getInstallments().stream()
+          .map(installmentMapper::toDto)
+          .collect(Collectors.toList()));
+    }
+    
+    return dto;
   }
 
   @Override

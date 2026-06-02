@@ -53,7 +53,7 @@ public class MovementModel {
   String description;
   @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, optional = true)
   AccountModel account;
-  @OneToOne(mappedBy = "movement", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @OneToOne(mappedBy = "movement", fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
   CreditCardStatementModel creditCardStatement;
   Boolean paid;
   @Enumerated(EnumType.STRING)

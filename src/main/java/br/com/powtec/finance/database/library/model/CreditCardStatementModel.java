@@ -2,6 +2,7 @@ package br.com.powtec.finance.database.library.model;
 
 import java.math.BigDecimal;
 import java.time.YearMonth;
+import java.util.List;
 
 import br.com.powtec.finance.database.library.converter.YearMonthConverter;
 import jakarta.persistence.CascadeType;
@@ -13,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
@@ -48,6 +50,8 @@ public class CreditCardStatementModel {
   private Boolean closed;
   @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
   private CreditCardModel card;
-  @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
   MovementModel movement;
+  @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "statement")
+  private List<CreditCardInstallmentModel> installments;
 }
